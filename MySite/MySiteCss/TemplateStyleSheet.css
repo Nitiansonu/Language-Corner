@@ -1,0 +1,178 @@
+body
+{
+	margin:0 0 0 0;
+	background-color:#fdf5e6;
+	background:url("../MySiteImage/bck.jpg");
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	height:720px;
+}
+#main
+{	
+	height:700px;
+	width:680px;
+	margin:1 0 0 358px;
+	border:1px solid #2c2c2c;
+	box-shadow:0px 5px 20px 4px black; 
+}
+
+#container
+{
+	background-color:yellow;
+	width:680px;
+	height:152px;
+}
+
+#banner
+{
+	width:680px;
+	height:130px;
+	background-color:yellow;	
+}
+
+#nav
+{
+	background-color:#32cd32;
+	border-top:1px solid black;
+	border-bottom:1px solid black;
+	width:680px;
+	height:21px;	
+}
+
+#ulid
+{
+	padding:0px;
+	margin:0px;
+}
+
+#ulid li
+{
+	margin:0px;
+}
+
+#ulid li a
+{
+	margin:0px 0px 0px 0px;
+	height:17px;
+	display:block;
+	float:left;
+	padding:2px 5px;
+	font-family:verdana;
+	font-size:13px;
+	text-decoration:none;
+}
+
+#ulid li a:hover
+{
+	background-color:green;
+	color:white;
+}
+
+.deactive
+{
+	color:black;
+}
+
+.active
+{
+		background-color:green;
+		color:white;
+}
+
+#content
+{
+	width:680px;
+	height:548px;
+	background-color:white;
+}
+
+#subcontent
+{
+	margin:0;
+	background-color:white;
+	height:446px;
+	width:680px;
+	border-top:1px solid black;
+	border-bottom:1px solid #0daedf;
+}
+
+
+#address
+{
+	background-color:#2c2c2c;
+	height:100px;
+}
+.msg
+{
+	font-family:arial;
+	color:black;
+	text-indent:50px;
+	font-size:17px;
+	margin:0;
+	text-align:justify;
+	line-height:30px;
+	
+}
+
+.coursedoc
+{
+	margin:5px 0 0 0;
+	border-bottom:1px solid black;
+	height:105px;
+}
+.courseimg
+{
+	border:2px solid green;
+	margin:1px;
+}
+
+form
+{
+	background-color:white;
+}
+
+.spacer
+{
+	height:10px;
+}
+
+.label
+{
+	color:black;
+	font-family:arial;
+	font-size:14px;
+}
+
+
+#logintable
+{
+	border:1px solid red;
+	margin:0;
+	
+}
+
+.courselink
+{
+	font-family:arial;
+	font-size:12px;
+	color:blue;
+}
+
+.courselink:hover
+{
+	color:red;
+}
+
+.ibox
+{
+	height:30px;
+	width:250px;
+	border: 1px solid black;
+    border-radius: 4px;
+	padding-left:12px;
+}
+
+sup
+{
+	color:red;
+}

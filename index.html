@@ -1,0 +1,94 @@
+<html>
+
+	<head>
+	
+		<title>Education Mania</title>
+		
+		<link href="MySite/MySiteCss/TemplateStyleSheet.css" rel="stylesheet" type="text/css"/>
+		
+		<script>
+		
+			function setcookie()
+			{	
+				//alert(document.cookie);
+				if(document.cookie=='')
+				{
+					var hour=24;
+					var d = new Date();
+					d.setTime(d.getTime() + (hour * 60 * 60 * 1000));
+					var cookieExpireDate = "expires=" + d.toString();
+					document.cookie="login=0;"+cookieExpireDate+";path=/";
+				}
+				else
+					login_check();
+				
+			}
+			function login_check()
+			{		
+				var temp=document.cookie.split(";");
+				
+				var temp2=temp[0].split("=");
+				
+				var temp3=temp2[1].split("");
+			
+				if(temp3[0]=="1")
+				{
+					window.location.href="MySite/MySitePages/studentsaccount/afterlogin.html";
+				}
+			}
+			window.onload=setcookie;
+		</script>
+		
+	</head>
+	
+	<body>
+		
+	
+		<div id="main">
+			
+			<div id="container">
+			
+				<div id="banner">
+				
+					<img src="MySite/MySiteImage/head_banner.jpg">
+					
+				</div>
+				
+				<div id="nav">
+				
+					<ul id="ulid" type="none">
+					
+						<li><a class="active" href="index.html">HOME</a></li>
+						<li><a class="deactive" href="MySite/MySitePages/courses.html">COURSES</a></li>
+						<li><a class="deactive" href="MySite/MySitePages/registration.html">REGISTRATION</a></li>
+						<li><a class="deactive" href="MySite/MySitePages/account.html">YOUR ACCOUNT</a></li>
+						<li><a class="deactive" href="MySite/MySitePages/aboutus.html">ABOUT US</a></li>
+						
+					</ul>
+				
+				</div>
+				
+			</div>
+			
+			
+			<div id="content">
+			
+				<div id="subcontent">
+				
+					<img src="MySite/MySiteImage/landing_img.jpg" style="height:448; width:680;">										
+							
+				</div>
+				
+				<div id="address">
+				
+					
+					
+				</div>
+		
+			</div>
+			
+		</div>
+			
+	</body>
+	
+</html>

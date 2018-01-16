@@ -1,0 +1,404 @@
+<html>
+
+	<head>
+	
+		<title>Education Mania</title>
+		
+		<link href="../MySiteCss/TemplateStyleSheet.css" rel="stylesheet" type="text/css"/>
+		
+		<script>
+			function reset_form()
+			{
+				document.getElementById("myForm").reset();
+				document.getElementById("request_msg").style.color="black";
+				document.getElementById("register").disabled=false;
+				document.getElementById("request_msg").innerHTML="Fill all fields carefully"
+			}			
+			function ajax_post()
+			{  	
+				if(document.getElementById("firstname").value=="")
+				{
+					alert("first name should not be left blank");
+					return false;
+				}
+				if(document.getElementById("lastname").value=="")
+				{
+					alert("last name should not be left blank");
+					return false;
+				}
+				
+				
+				if(document.getElementById("mobile_no").value=="")
+				{
+					alert("mobile number should not be left blank");
+					return false;
+				}
+				
+				if(document.getElementById("mobile_no").value.length!=10)
+				{
+					alert("mobile number must be of 10 digits");
+					return false;
+				}
+				var x = document.getElementById("email").value;
+				var atpos = x.indexOf("@");
+				var dotpos = x.lastIndexOf(".");
+				
+				if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+				{
+					alert("Not a valid e-mail address");
+					return false;
+				}
+								
+				var course_flag=0;
+				
+				if(document.getElementById("c").checked)
+				{
+					document.getElementById("c").value=1;						
+					course_flag=1;
+				}
+				else
+				{
+					document.getElementById("c").value=0;
+				}
+				
+				
+				if(document.getElementById("cpp").checked)
+				{
+					document.getElementById("cpp").value=1;
+					course_flag=1;
+				}
+				else
+				{
+					document.getElementById("cpp").value=0;
+				}
+				
+				if(document.getElementById("python").checked)
+				{
+					document.getElementById("python").value=1;
+					course_flag=1;
+				}
+				else
+				{
+					document.getElementById("python").value=0;
+				}
+				
+				if(document.getElementById("java").checked)
+				{
+					document.getElementById("java").value=1;					
+					course_flag=1;
+				}
+				else
+				{
+					document.getElementById("java").value=0;
+				}
+				
+				if(course_flag==0)
+				{
+					alert("You have not selected any course");
+					return false;
+				}
+				
+				if(document.getElementById("username").value=="")
+				{
+					alert("Fill the username field");
+					return false;
+				}
+				if(document.getElementById("password").value=="")
+				{
+					alert("Password should not be left blank");
+					return false;
+				}
+				if(document.getElementById("password").value.length<8)
+				{
+					alert("Password length must be greater than 7 characters.");
+					return false;
+				}
+				if(document.getElementById("confirmpassword").value=="")
+				{
+					alert("Fill the confirm password field");
+					return false;
+				}
+				if(document.getElementById("confirmpassword").value.length<8)
+				{
+					alert("Password length must be greater than 7 character");
+					return false;
+				}
+				
+				if(document.getElementById("password").value!=document.getElementById("confirmpassword").value)
+				{
+					alert("Password doesn't matches with confirm password.");
+					return false;
+				}
+				
+
+				var hr=new XMLHttpRequest();
+				var url="../MySitePhp/server_side_file.php";
+		
+				var fn=document.getElementById("firstname").value;
+				var ln=document.getElementById("lastname").value;
+				var mbn=document.getElementById("mobile_no").value;
+				var eml=document.getElementById("email").value;
+				var crs_c=document.getElementById("c").value;
+				var crs_cpp=document.getElementById("cpp").value;
+				var crs_python=document.getElementById("python").value;
+				var crs_java=document.getElementById("java").value;
+				var u_name=document.getElementById("username").value;
+				var pswd=document.getElementById("password").value;
+	
+				var datas="firstname="+fn+"&lastname="+ln+"&mobile_no="+mbn+"&email="+eml+"&c="+crs_c+"&cpp="+crs_cpp+"&python="+crs_python+"&java="+crs_java+"&username="+u_name+"&password="+pswd;
+		
+				hr.open("POST",url,true);	
+				hr.setRequestHeader("Content-type","application/x-www-form-urlencoded");				
+				
+				hr.onreadystatechange=function()
+				{   			
+					if(hr.readyState===4 && hr.status===200)
+					{					
+						document.getElementById("request_msg").style.color="green";
+						document.getElementById("request_msg").innerHTML=this.responseText;
+						document.getElementById("register").disabled=true;
+						
+					}
+				};
+				
+				hr.send(datas);		
+				document.getElementById("request_msg").innerHTML="Registering....";
+						
+			}
+			
+		</script>
+		
+	</head>
+	
+	<body>
+	
+		<div id="main">
+			
+			<div id="container">
+			
+				<div id="banner">
+				
+					<img src="../MySiteImage/reg_banner.jpg">
+					
+				</div>
+				
+				<div id="nav">
+				
+					<ul id="ulid" type="none">
+					
+						<li><a class="deactive" href="../../index.html">HOME</a></li>
+						<li><a class="deactive" href="courses.html">COURSES</a></li>
+						<li><a class="active" href="registration.html">REGISTRATION</a></li>
+						<li><a class="deactive" href="account.html">YOUR ACCOUNT</a></li>
+						<li><a class="deactive" href="aboutus.html">ABOUT US</a></li>
+						
+					</ul>
+				
+				</div>
+				
+			</div>
+			
+			
+			<div id="content">
+			
+				<div id="subcontent">
+				
+					<form id="myForm" name="myForm" method="post" style="background-color:white;">
+					
+					<table align="center" style="margin-top:20px; background-color:white; color:black;">
+						
+						
+							<tr>
+								<th colspan=4 class="spacer">
+									REGISTER NOW
+								</th>
+							</tr>
+							
+							<tr>
+								<td colspan=4 class="spacer">
+									
+								</td>
+							</tr>
+						
+							<tr>
+								<td>
+									<sup>*</sup><label class="label" for="firstname">First Name</label>
+								</td>
+								
+								<td>
+									<input type="text" id="firstname", name="firstname" class="ibox" maxlength="10">
+								</td>
+								
+								<td>
+								
+								</td>
+							
+								<td rowspan=8 colspan=2>
+									
+									<img src="../MySiteImage/reg_pic.jpg" height=180 width=170>
+								
+								</td>
+								
+							</tr>
+							
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>
+							
+							<tr>
+								
+								<td>
+									<sup>*</sup><label class="label" for="lastname">Last Name</label>
+								</td>
+								
+								<td>
+									<input type="text" id="lastname", name="lastname" class="ibox">
+								</td>
+								
+							</tr>
+		
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<sup>*</sup><label class="label" for="mobile_no">Mobile No.</label>
+								</td>
+								<td>
+									<input type="text" id="mobile_no" name="mobile_no" class="ibox">
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<sup>*</sup><label class="label" for="email">Email</label>
+								</td>
+								<td>
+									<input type="text" id="email" name="email" class="ibox">
+								</td>
+								
+							</tr>
+							
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<sup>*</sup><label class="label" for="course">Select Courses</label>
+								</td>									
+								
+								<td colspan=2>
+									<input type="checkbox" id="c" name="c" value=''>
+									<label for="c" class="label">C</label>
+								
+									<input type="checkbox" id="cpp" name="cpp" value=''>
+									<label for="cpp" class="label">Cpp</label>
+								
+									<input type="checkbox" id="python" name="python" value=''>
+									<label for="python" class="label">Python</label>
+																		
+									<input type="checkbox" id="java" name="java" value=''>
+									<label for="java" class="label">Java</label>
+									
+								</td>
+								
+								
+							</tr>
+							
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>						
+							
+							<tr>
+								<td>
+									<sup>*</sup><label class="label" for="username">Login User Name</label>
+								</td>
+								
+								<td>
+									<input type="text" id="username" name="username" class="ibox">
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<sup>*</sup><label class="label" for="password">Login Password</label>
+								</td>
+								
+								<td>
+									<input type="password" id="password" name="password" class="ibox">
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<sup>*</sup><label class="label" for="confirmpassword">Confirm Password</label>
+								</td>
+								
+								<td>
+									<input type="password" id="confirmpassword" name="confirmpassword" class="ibox">
+								</td>
+								
+								<td colspan=2 align="right">
+									<button type="button" onclick="reset_form()">Reset</button>&nbsp;&nbsp;<button type="button" id="register" onclick="ajax_post()">Register</button>
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan=3 class="spacer">
+									
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan=4 align="center">
+									<p id="request_msg">Fill all fields carefully</p>
+								</td>
+							</tr>
+							
+							
+							
+							
+						</table>
+					
+						
+					</form>
+					
+				</div>
+				
+				<div id="address">
+					
+				</div>
+		
+			</div>
+			
+		</div>
+			
+	</body>
+	
+</html>

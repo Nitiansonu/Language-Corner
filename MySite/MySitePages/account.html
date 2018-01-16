@@ -1,0 +1,197 @@
+<html>
+
+	<head>
+	
+		<title>Education Mania</title>
+		
+		<link href="../MySiteCss/TemplateStyleSheet.css" rel="stylesheet" type="text/css"/>
+		
+		<script type="text/javascript">
+			var mydataarray;
+
+			function resetcookie()
+			{							
+				var hour=-1;
+				var d = new Date();
+				d.setTime(d.getTime() + (hour * 60 * 60 * 1000));
+				var cookieExpireDate = "expires=" + d.toString();
+				document.cookie="login=;"+cookieExpireDate+";path=/";
+			}
+			function setcookie()
+			{
+				var hour=24;
+				var d = new Date();
+				d.setTime(d.getTime() + (hour * 60 * 60 * 1000));
+				var cookieExpireDate = "expires=" + d.toString();
+				
+				document.cookie="login="+mydataarray[0]+mydataarray[1]+mydataarray[2]+mydataarray[3]+mydataarray[4]+mydataarray[5]+";"+cookieExpireDate+";path=/";
+			}
+		
+			function validate_name_password()
+			{
+				if(document.forms["loginform"]["loginusername"].value=="")
+				{
+					alert("user name should not be left blank");
+					return false;
+				}
+				
+				if(document.forms["loginform"]["loginpassword"].value=="")
+				{
+					alert("enter your password");
+					return false;
+				}
+				
+				var account_hr=new XMLHttpRequest();
+				var url="../MySitePhp/accountcheck.php";
+				
+				var login_name=document.getElementById("loginusername").value;
+				var login_pswd=document.getElementById("loginpassword").value;
+				
+				var account_data="username="+login_name+"&password="+login_pswd;
+				
+				account_hr.open("POST",url,true);
+				account_hr.setRequestHeader("Content-type","application/x-www-form-urlencoded");				
+				
+				account_hr.onreadystatechange=function()
+				{
+					if(account_hr.readyState==4 && account_hr.status==200)
+					{		
+					
+						
+						var response_msg=this.responseText;
+						mydataarray=response_msg.split(" ");
+						
+						if(mydataarray[0]=="1")
+						{
+							resetcookie();
+							setcookie();
+							window.location.href="studentsaccount/afterlogin.html";
+						}
+						else if(mydataarray[0]=="0")
+						{					
+							document.getElementById("error_msg").style.color="red";
+							document.getElementById("error_msg").innerHTML="Invalid username or password";							
+						}
+					}
+				};
+				
+				account_hr.send(account_data);
+				document.getElementById("error_msg").style.visibility="visible";
+				document.getElementById("error_msg").style.color="green";
+				document.getElementById("error_msg").innerHTML="Verifying username and password. Please wait...";
+			}
+		</script>
+				
+	</head>
+	
+	<body>
+	
+		<div id="main">
+			
+			<div id="container">
+			
+				<div id="banner">
+				
+					<img src="../MySiteImage/destiny.jpg">
+					
+				</div>
+				
+				<div id="nav">
+				
+					<ul id="ulid" type="none">
+					
+						<li><a class="deactive" href="../../index.html">HOME</a></li>
+						<li><a class="deactive" href="courses.html">COURSES</a></li>
+						<li><a class="deactive" href="registration.html">REGISTRATION</a></li>
+						<li><a class="active" href="account.html">YOUR ACCOUNT</a></li>
+						<li><a class="deactive" href="aboutus.html">ABOUT US</a></li>
+						
+					</ul>
+				
+				</div>
+				
+			</div>
+			
+			<div id="content">
+			
+				<div id="subcontent">						
+					
+					<div style="margin:0px;height:326px;border:1px solid white;">
+					
+						<form name="loginform" id="loginform" method="post" style="background-color:white;">
+					
+							<table align="center" style="border:1px solid red; margin-top:80px;">
+								
+								<tr>
+									<td rowspan=7><img src="../MySiteImage/loginimg.jpg" height=155px width=155px></td>
+									
+									<th colspan=2 style="background-color:#32cd32; height:30px; color:black; font-family:verdana; font-size:15px;">Sign Up</th>
+								</tr>
+								
+								<tr>
+									<td colspan=2 class="spacer">
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<label for="loginusername" class="label">Username</label>
+									</td>
+									
+									<td>
+										<input type="text" id="loginusername" name="loginusername" class="ibox">
+									</td>
+								</tr>
+								
+								<tr>
+									<td colspan=2 class="spacer">
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<label for="loginpassword" class="label">Password</label>
+									</td>
+									
+									<td>
+										<input type="password" id="loginpassword" name="loginpassword" class="ibox">
+									</td>
+								</tr>
+							
+								<tr>
+									<td colspan=2 class="spacer">
+									</td>
+								</tr>
+								
+								<tr>
+									<td colspan=2 align="center">
+										<button type="button" onclick="validate_name_password()">Log In</button>
+									</td>
+								</tr>
+							
+								
+							</table>
+							
+						</form>
+						
+					</div>
+					
+					<div style="margin:0px;border:1px solid white; height:115px;">
+					
+						<p id="error_msg" style="visibility:hidden; text-align:center; color:green;">Change password</p>
+												
+					</div>
+				</div>
+				
+				<div id="address">
+					
+				</div>
+		
+			</div>
+			
+		</div>
+		
+	
+	</body>
+	
+</html>

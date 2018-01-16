@@ -1,0 +1,250 @@
+<html>
+
+	<head>
+	
+		<title>Education Mania</title>
+		
+		<link href="../../MySiteCss/TemplateStyleSheet.css" rel="stylesheet" type="text/css"/>
+		
+		<style>
+		
+			#mediacontent
+			{
+				margin:0;
+				height:366;
+				width:680px;
+				background-color:blue;
+				
+			}
+			#mediacontrol
+			{
+				margin:0;
+				height:80;
+				width:680px;
+				background-color:red;
+			}
+			
+			#showscreen
+			{
+				margin:0;
+				height:366px;
+				width:480px;
+				background-color:yellow;
+				float:left;
+			}
+			#playlist
+			{
+				margin:0;
+				height:366px;
+				width:200px;
+				background-color:pink;
+				float:right;
+				overflow-x:hidden;
+				overflow-y:scroll;
+			}
+			.coursebuttons
+			{
+				border:none;
+				cursor:pointer;
+				text-align:center;
+				width:185;
+				height:40;
+				background-color:#222222;
+				color:white;
+			}
+			.coursebuttons:hover
+			{
+				background-color:#525252;
+			}
+		
+			.mediacontrolbutton
+			{
+				text-decoration:none;
+				text-align:center;
+				color:white;
+				display:block;
+				background-color:#600000;
+				height:30px;
+				margin-right:100px;
+				width:50px;
+				padding-top:7px;
+				font-size:16px;
+				border:2px solid black;
+				border-radius:10px;
+				box-shadow:5px 5px 2px grey;
+			}
+			
+			#mediabuttonlist
+			{
+				margin:25 0 0 140;
+				padding:0;
+			}
+			#mediabuttonlist li
+			{
+				float:left;
+				
+			}
+			#mediabuttonlist li a:hover
+			{
+				background-color:#bd0000
+			}
+	
+		</style>
+	</head>
+	
+	<script>			
+
+		var c_videos_link={ "c1_part1":"../../MyCourseVideos/Cvideos/c1_part1.mp4",
+							"c1_part2":"../../MyCourseVideos/Cvideos/c1_part2.mp4",
+							"c1_part3":"../../MyCourseVideos/Cvideos/c1_part3.mp4",
+							"c2":"../../MyCourseVideos/Cvideos/c2.mp4",
+							"c3":"../../MyCourseVideos/Cvideos/c3.mp4",
+							"c4_part1":"../../MyCourseVideos/Cvideos/c4_part1.mp4",
+							"c4_part2":"../../MyCourseVideos/Cvideos/c4_part2.mp4",
+							"c4_part3":"../../MyCourseVideos/Cvideos/c4_part3.mp4",
+							"c4_part4":"../../MyCourseVideos/Cvideos/c4_part4.mp4",
+							"c5_part1":"../../MyCourseVideos/Cvideos/c5_part1.mp4",			
+							"c5_part2":"../../MyCourseVideos/Cvideos/c5_part2.mp4",
+							"c5_part3":"../../MyCourseVideos/Cvideos/c5_part3.mp4",
+							"c5_part4":"../../MyCourseVideos/Cvideos/c5_part4.mp4",
+							"c5_part5":"../../MyCourseVideos/Cvideos/c5_part5.mp4",			
+							"c5_part6":"../../MyCourseVideos/Cvideos/c5_part6.mp4",			
+							"c5_part7":"../../MyCourseVideos/Cvideos/c5_part7.mp4",			
+							"c6_part1":"../../MyCourseVideos/Cvideos/c6_part1.mp4",			
+							"c6_part2":"../../MyCourseVideos/Cvideos/c6_part2.mp4",
+							"c6_part3":"../../MyCourseVideos/Cvideos/c6_part3.mp4",
+							"c7_part1":"../../MyCourseVideos/Cvideos/c7_part1.mp4",
+							"c7_part2":"../../MyCourseVideos/Cvideos/c7_part2.mp4",
+							}
+		function setvideourls(button_id)
+		{
+			var player=document.getElementById("myvideoid");
+			player.pause();
+			
+			var videosrc=document.getElementById("videoelementsrc");
+			videosrc.src=c_videos_link[button_id];
+			
+			player.load();
+			player.play();
+		}
+		
+		function setpage()
+		{
+			
+			var temp=document.cookie;
+			var temp2=temp.split(";");
+			var temp3=temp2[0].split("=");
+			var x=temp3[1];  	//temp3[1] contain loginflag,name,coursesflag
+			var name=x.slice(1,x.length-4);
+			var courses=x.slice(x.length-4,x.length);
+			var coursestemp=courses.split("");
+			document.getElementById("user").innerHTML=name;
+		}
+		
+		window.onload=setpage;
+			
+		function setcookie()
+		{										
+			var hour=24;
+			var d = new Date();
+			d.setTime(d.getTime() + (hour * 60 * 60 * 1000));
+			var cookieExpireDate = "expires=" + d.toString();
+			document.cookie="login=0;"+cookieExpireDate+";path=/";   //for logout i give logout=0;			
+		}
+		function resetcookie()
+		{							
+			var hour=-1;
+			var d = new Date();
+			d.setTime(d.getTime() + (hour * 60 * 60 * 1000));
+			var cookieExpireDate = "expires=" + d.toString();
+			document.cookie="login=;"+cookieExpireDate+";path=/"; 	//for delete old value of logout i give logout=1
+		}		
+		function logoutprofile()
+		{
+			resetcookie();
+			setcookie();
+			return true;
+		}
+	
+	</script>
+	<body>
+		
+	
+		<div id="main">
+			
+			<div id="container">
+			
+				<div id="banner">
+				
+					<img src="../../MySiteImage/destiny.jpg">
+					
+				</div>
+
+				<div id="nav">
+				
+						<a href="afterlogin.html" style="color:white;">back</a>
+						<a href="../account.html" onclick="logoutprofile()" style="color:white;float:right;cusor:pointer;margin:0 5px 0 0;">logout</a>
+						<a href="" id="user" style="color:white;float:right;margin:0 8px 0 0;">demo</a>
+				
+				</div>
+				
+			</div>
+			
+			
+			<div id="content">
+			
+				<div id="subcontent">
+				
+					<div id="mediacontent">
+					
+						<div id="showscreen">
+						
+							<video id="myvideoid" width="480" height="366" controls style="margin:0;">
+									<source id="videoelementsrc" src="../../MyCourseVideos/Cvideos/c1_part1.mp4" type="video/mp4">
+							</video>
+							
+						</div>
+						
+						<div id="playlist">
+							<button class="coursebuttons" id="c1_part1" onclick="setvideourls(this.id)">Introduction to c part-I</button>
+							<button class="coursebuttons" id="c1_part2" onclick="setvideourls(this.id)">Introduction to c part-II</button>
+							<button class="coursebuttons" id="c1_part3" onclick="setvideourls(this.id)">Introduction to c part-III</button>
+							<button class="coursebuttons" id="c2" onclick="setvideourls(this.id)">Identifiers in c</button>
+							<button class="coursebuttons" id="c3" onclick="setvideourls(this.id)">Data type declaration instruction in c</button>
+							<button class="coursebuttons" id="c4_part1" onclick="setvideourls(this.id)">Input output instruction in c Part-I</button>
+							<button class="coursebuttons" id="c4_part2" onclick="setvideourls(this.id)">Input output instruction in c Part-II</button>
+							<button class="coursebuttons" id="c4_part3" onclick="setvideourls(this.id)">Input output instruction in c Part-III</button>
+							<button class="coursebuttons" id="c4_part4" onclick="setvideourls(this.id)">Input output instruction in c Part-IV</button>
+							<button class="coursebuttons" id="c5_part1" onclick="setvideourls(this.id)">Arithmetic instruction in c part-I</button>
+							<button class="coursebuttons" id="c5_part2" onclick="setvideourls(this.id)">Arithmetic instruction in c part-II</button>
+							<button class="coursebuttons" id="c5_part3" onclick="setvideourls(this.id)">Arithmetic instruction in c part-III</button>
+							<button class="coursebuttons" id="c5_part4" onclick="setvideourls(this.id)">Arithmetic instruction in c part-IV</button>
+							<button class="coursebuttons" id="c5_part5" onclick="setvideourls(this.id)">Arithmetic instruction in c part-V</button>
+							<button class="coursebuttons" id="c5_part6" onclick="setvideourls(this.id)">Arithmetic instruction in c part-VI</button>
+							<button class="coursebuttons" id="c5_part7" onclick="setvideourls(this.id)">Arithmetic instruction in c part-VII</button>
+							<button class="coursebuttons" id="c6_part1" onclick="setvideourls(this.id)">Decision control in c part-I</button>
+							<button class="coursebuttons" id="c6_part2" onclick="setvideourls(this.id)">Decision control in c part-II</button>
+							<button class="coursebuttons" id="c6_part3" onclick="setvideourls(this.id)">Decision control in c part-III</button>
+							<button class="coursebuttons" id="c7_part1" onclick="setvideourls(this.id)">Loops in c part-I</button>
+							<button class="coursebuttons" id="c7_part2" onclick="setvideourls(this.id)">Loops in c part-II</button>
+						</div>
+					</div>
+				
+					<div id="mediacontrol">
+					</div>
+							
+				</div>
+				
+				<div id="address">
+				
+					
+					
+				</div>
+		
+			</div>
+			
+		</div>
+			
+	</body>
+	
+</html>

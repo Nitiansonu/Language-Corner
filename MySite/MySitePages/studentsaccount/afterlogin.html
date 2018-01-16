@@ -1,0 +1,173 @@
+<html>
+
+	<head>
+	
+		<title>Education Mania</title>
+		
+		<link href="../../MySiteCss/TemplateStyleSheet.css" rel="stylesheet" type="text/css"/>
+		
+		<style>
+	
+			#loggedin
+			{
+				margin:40px 0 0 50;
+				padding:0;
+			}
+			
+			#loggedin li
+			{
+				margin:0;
+				padding:0;
+			}
+			.button
+			{
+				text-decoration:none;
+				color:white;
+				height:50px;
+				padding-top:10px;
+				font-size:30px;
+				font-family:verdana;
+				text-align:center;
+				display:block;
+				background-color:#700000;
+				width:350px;
+				margin-bottom:40px;
+				border:2px solid black;
+				border-radius:20px;
+				box-shadow:10px 10px 2px grey;
+			}
+			.button:hover
+			{
+				background-color:#bd0000;
+				color:white;
+			}
+			#teacherimg
+			{
+				margin-top:30px;
+				height:400px;
+				margin-left:30px
+			}
+			
+		</style>
+	</head>
+
+	
+	<script>
+		
+		function setpage()
+		{
+			var temp=document.cookie;
+			var temp2=temp.split(";");
+			var temp3=temp2[0].split("=");
+			var x=temp3[1];  	//temp3[1] contain loginflag,name,coursesflag
+			var name=x.slice(1,x.length-4);
+			var courses=x.slice(x.length-4,x.length);
+			var coursestemp=courses.split("");
+			document.getElementById("user").innerHTML=name;
+			
+			if(coursestemp[0]=="0")
+			{
+				document.getElementById("c").style.display = "none";
+			}
+			if(coursestemp[1]=="0")
+			{
+				document.getElementById("cpp").style.display = "none";
+			}
+			if(coursestemp[2]=="0")
+			{
+				document.getElementById("python").style.display = "none";
+			}
+			if(coursestemp[3]=="0")
+			{
+				document.getElementById("java").style.display = "none";
+			}
+		}
+		
+		window.onload=setpage;
+		
+		function setcookie()
+		{										
+			var hour=24;
+			var d = new Date();
+			d.setTime(d.getTime() + (hour * 60 * 60 * 1000));
+			var cookieExpireDate = "expires=" + d.toString();
+			document.cookie="login=0;"+cookieExpireDate+";path=/";   //for logout i give logout=0;			
+		}
+		function resetcookie()
+		{							
+			var hour=-1;
+			var d = new Date();
+			d.setTime(d.getTime() + (hour * 60 * 60 * 1000));
+			var cookieExpireDate = "expires=" + d.toString();
+			document.cookie="login=;"+cookieExpireDate+";path=/"; 	//for delete old value of logout i give logout=1
+		}		
+		function logoutprofile()
+		{
+			resetcookie();
+			setcookie();
+			return true;
+		}
+		
+	</script>
+	
+	<body>
+		
+	
+	<div id="main">
+			
+			<div id="container" style="height:130px;">
+			
+				<div id="banner">
+				
+					<img src="../../MySiteImage/destiny.jpg">
+					
+				</div>
+				
+			</div>
+			
+			
+			<div id="content">
+			
+				<div id="subcontent" style="height:468px;">
+				
+					<div style="height:18px; margin:0; border:0;">
+						
+						<a href="../account.html" onclick="logoutprofile()" style="float:right;cusor:pointer;margin:0 5px 0 0;">logout</a>
+						<a href="" id="user" style="float:right;margin:0 8px 0 0;">demo</a>
+						
+					</div>
+					
+					<div style="margin:0;height:450;border:0;">
+						
+						<div style="margin:0;height:450;width:200px;float:left;">
+							<img id="teacherimg" src="../../MySiteImage/teacher.jpg">
+						</div>
+						
+						
+						<div style="margin:0;height:450;width:480;float:right;">
+						
+							<ul type="none" id="loggedin">
+							
+								<li><a href="cvideos.html" class="button" id="c">Learn C</a></li>
+								<li><a href="" class="button" id="cpp">Learn Cpp</a></li>
+								<li><a href="" class="button" id="python">Learn Python</a></li>
+								<li><a href="" class="button" id="java">Learn Java</a></li>
+							</ul>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+				
+				<div id="address">
+					
+				</div>
+		
+			</div>
+			
+		</div>
+			
+	</body>
+	
+</html>
